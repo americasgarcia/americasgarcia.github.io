@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>America Sanchez-Garcia | Portfolio</title>
+
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1b3a6b;
+    --navy-light: #2a5298;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d4;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --text: #1a1a2e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15, 31, 61, 0.97);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .nav-logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem; color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem; font-weight: 400;
+    color: rgba(245,240,232,0.7);
+    text-decoration: none; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 8rem 3rem 4rem 8rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(42,82,152,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem; font-weight: 400;
+    color: var(--gold); letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    color: var(--white); line-height: 1.05;
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.6s 0.6s forwards;
+  }
+  .hero-desc {
+    max-width: 540px;
+    font-size: 1rem; line-height: 1.75;
+    color: rgba(245,240,232,0.75);
+    margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    opacity: 0; animation: fadeUp 0.6s 1s forwards;
+  }
+  .tag {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; font-weight: 500;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+    background: rgba(201,168,76,0.06);
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 8rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; color: rgba(245,240,232,0.35);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 1rem;
+    opacity: 0; animation: fadeUp 0.6s 1.2s forwards;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: rgba(245,240,232,0.2);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 8rem; }
+
+  .section-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; font-weight: 500;
+    color: var(--gold); letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 80px; height: 1px;
+    background: var(--gold); opacity: 0.4;
+  }
+  .section-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--navy); line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #374151; margin-bottom: 1.25rem;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-card {
+    background: var(--navy);
+    padding: 1.75rem;
+    border-radius: 4px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .stat-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.5rem; color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; color: rgba(245,240,232,0.6);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--navy); }
+  #education .section-title { color: var(--cream); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .edu-card {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-top: 3px solid var(--gold);
+    padding: 2.5rem;
+    transition: background 0.3s;
+  }
+  .edu-card:hover { background: rgba(245,240,232,0.07); }
+  .edu-degree {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.3rem; color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .edu-school {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem; color: var(--gold);
+    letter-spacing: 0.08em; margin-bottom: 1rem;
+  }
+  .edu-detail {
+    font-size: 0.875rem; color: rgba(245,240,232,0.55);
+    line-height: 1.6;
+  }
+  .edu-badge {
+    display: inline-block; margin-top: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem; font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--cream-dark); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .skill-group {
+    background: var(--white);
+    padding: 2rem;
+    border-left: 3px solid var(--navy-light);
+  }
+  .skill-group-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; font-weight: 500;
+    color: var(--navy-mid); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 1.25rem;
+  }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.9rem; color: #374151;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--cream); }
+  .projects-list { display: flex; flex-direction: column; gap: 4rem; }
+  .project-card {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 3rem;
+    align-items: start;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(15,31,61,0.1);
+  }
+  .project-card:last-child { border-bottom: none; padding-bottom: 0; }
+  .project-meta { position: sticky; top: 5rem; }
+  .project-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 4rem; color: rgba(15,31,61,0.08);
+    line-height: 1; margin-bottom: 0.5rem;
+  }
+  .project-lang {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; font-weight: 500;
+    color: var(--gold); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .project-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem; color: var(--navy);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .project-tag {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem; font-weight: 400;
+    padding: 0.25rem 0.65rem;
+    background: var(--navy);
+    color: rgba(245,240,232,0.8);
+    letter-spacing: 0.05em;
+  }
+  .project-body {}
+  .project-section-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem; font-weight: 500;
+    color: var(--navy-light); letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 0.6rem;
+    margin-top: 1.75rem;
+  }
+  .project-section-title:first-child { margin-top: 0; }
+  .project-body p {
+    font-size: 0.975rem; line-height: 1.85;
+    color: #374151; margin-bottom: 0.75rem;
+  }
+  .code-snippet {
+    background: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+  .code-snippet code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.78rem; color: rgba(245,240,232,0.85);
+    line-height: 1.7; white-space: pre;
+  }
+  .highlight { color: var(--gold-light); }
+  .highlight-green { color: #86efac; }
+  .highlight-blue { color: #93c5fd; }
+
+  /* ── WORK ── */
+  #work { background: var(--navy); }
+  #work .section-title { color: var(--cream); }
+  .work-list { display: flex; flex-direction: column; gap: 0; }
+  .work-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 3rem; align-items: start;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+  }
+  .work-item:last-child { border-bottom: none; }
+  .work-dates {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem; color: rgba(245,240,232,0.4);
+    letter-spacing: 0.05em; padding-top: 0.3rem;
+  }
+  .work-role {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.25rem; color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+  .work-company {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem; color: var(--gold);
+    letter-spacing: 0.08em; margin-bottom: 1rem;
+  }
+  .work-bullets { list-style: none; }
+  .work-bullets li {
+    font-size: 0.9rem; color: rgba(245,240,232,0.65);
+    line-height: 1.7; padding: 0.3rem 0;
+    padding-left: 1.25rem; position: relative;
+  }
+  .work-bullets li::before {
+    content: '';
+    position: absolute; left: 0; top: 0.75rem;
+    width: 5px; height: 1px; background: var(--gold);
+  }
+
+  /* ── CERTS ── */
+  #certs { background: var(--cream-dark); }
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .cert-card {
+    background: var(--white);
+    padding: 1.75rem;
+    border-bottom: 3px solid var(--navy-mid);
+  }
+  .cert-issuer {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem; color: var(--gray);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .cert-name {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--navy); line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .cert-year {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem; color: var(--gray);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem 8rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem; color: var(--gold);
+  }
+  .footer-contact {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem; color: rgba(245,240,232,0.45);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── HAMBURGER BUTTON ── */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--gold); border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── TABLET ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-scroll { left: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .edu-grid, .skills-grid, .certs-grid { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 1fr; gap: 1.5rem; }
+    .project-meta { position: static; }
+    .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 480px) {
+    /* Nav: hamburger */
+    nav { padding: 0 1.25rem; height: 56px; }
+    .nav-logo { font-size: 0.95rem; }
+    .nav-links {
+      display: none; flex-direction: column; gap: 0;
+      position: fixed; top: 56px; left: 0; right: 0;
+      background: rgba(15,31,61,0.99);
+      border-bottom: 2px solid var(--gold);
+      padding: 0.5rem 0 1rem; z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 0.85rem 1.5rem; font-size: 0.85rem; display: block; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero */
+    .hero { padding: 5rem 1.25rem 3rem; min-height: auto; }
+    .hero-eyebrow { font-size: 0.65rem; margin-bottom: 1rem; }
+    .hero-name { font-size: clamp(2.2rem, 11vw, 3.2rem); line-height: 1.05; margin-bottom: 0.4rem; }
+    .hero-title { font-size: clamp(1rem, 5vw, 1.3rem); margin-bottom: 1.5rem; }
+    .hero-bio { font-size: 0.92rem; line-height: 1.7; margin-bottom: 2rem; max-width: 100%; }
+    .hero-tags { gap: 0.4rem; }
+    .hero-tag { font-size: 0.65rem; padding: 0.35rem 0.8rem; }
+    .hero-scroll { display: none; }
+
+    /* Sections */
+    section { padding: 3rem 1.25rem; }
+    .section-eyebrow { font-size: 0.65rem; }
+    .section-title { font-size: clamp(1.6rem, 8vw, 2.2rem); margin-bottom: 2rem; }
+
+    /* About stat cards */
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-card { padding: 1.25rem; }
+    .stat-number { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+
+    /* Education */
+    .edu-card { padding: 1.5rem; }
+
+    /* Skills */
+    .skills-grid { gap: 1rem; }
+    .skill-col { padding: 1.5rem; }
+
+    /* Projects */
+    .project-card { padding-bottom: 2.5rem; gap: 1rem; }
+    .proj-num { font-size: clamp(2.5rem, 12vw, 4rem); }
+    pre { font-size: 0.7rem; padding: 1rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Dashboard (inline grid) */
+    .ds-grid { grid-template-columns: 1fr !important; }
+    #ds-map-canvas { height: 160px !important; }
+
+    /* Work */
+    .work-item { padding: 1.5rem 0; }
+
+    /* Certs */
+    .cert-card { padding: 1.5rem; }
+
+    /* Footer */
+    footer { padding: 1.75rem 1.25rem; text-align: center; }
+    footer > div:first-child { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">America Sanchez-Garcia</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#education" onclick="closeMenu()">Education</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+    <li><a href="#work" onclick="closeMenu()">Experience</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <p class="hero-eyebrow">Portfolio &nbsp;/&nbsp; 2026</p>
+  <h1 class="hero-name">America<br/><em>Sanchez-Garcia</em></h1>
+  <p class="hero-title">CS &amp; Systems Engineering Student</p>
+  <p class="hero-desc">
+    Building reliable, well-structured software from the ground up.
+    Pursuing a B.S. in Computer Science and an M.S. in Systems Engineering,
+    with a focus on design integrity, requirements traceability, and systems that hold up under pressure.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Python</span>
+    <span class="tag">C++</span>
+    <span class="tag">Java</span>
+    <span class="tag">SQL</span>
+    <span class="tag">Systems Engineering</span>
+    <span class="tag">Austin, TX</span>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">Introduction</p>
+  <h2 class="section-title reveal">Designed to build.<br/>Driven to understand.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I am a Computer Science student completing my B.S. at Southern New Hampshire University and beginning my M.S. in Systems Engineering at the University of Texas at El Paso. My work sits at the intersection of software development, systems thinking, and rigorous engineering practice.</p>
+      <p>What sets me apart is an obsession with how things fit together. I do not just want code to run. I want to understand the architecture behind it, the requirements that shaped it, and the downstream effects of every decision made along the way.</p>
+      <p>Before returning to school, I spent years in high-stakes professional environments managing complex documentation, coordinating across teams, and keeping critical processes accurate under pressure. That foundation shapes how I approach every technical problem.</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <div class="stat-number">3.6</div>
+        <div class="stat-label">GPA<br/>B.S. Computer Science</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Completed<br/>Technical Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Industry<br/>Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years<br/>Professional Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label reveal">Academic Background</p>
+  <h2 class="section-title reveal">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">M.S. Systems Engineering</div>
+      <div class="edu-school">University of Texas at El Paso</div>
+      <div class="edu-detail">
+        Graduate program focused on systems architecture, requirements management, and lifecycle engineering for complex technical systems.
+      </div>
+      <span class="edu-badge">Anticipated Fall 2026</span>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">B.S. Computer Science</div>
+      <div class="edu-school">Southern New Hampshire University</div>
+      <div class="edu-detail">
+        Coursework spanning algorithms, data structures, system design, object-oriented programming, software security, and test-driven development. GPA: 3.6
+      </div>
+      <span class="edu-badge">Expected May 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label reveal">Technical Competencies</p>
+  <h2 class="section-title reveal">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Languages &amp; Scripting</div>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>C++</li>
+        <li>Java</li>
+        <li>SQL</li>
+        <li>MATLAB</li>
+        <li>Visual Basic</li>
+        <li>Bash</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Systems &amp; Design</div>
+      <ul class="skill-list">
+        <li>Object-Oriented Design</li>
+        <li>Data Structures &amp; Algorithms</li>
+        <li>System Design</li>
+        <li>Design Patterns</li>
+        <li>Requirements Management</li>
+        <li>Test-Driven Development</li>
+        <li>Secure Coding</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Tools &amp; Platforms</div>
+      <ul class="skill-list">
+        <li>Git / GitHub</li>
+        <li>Linux / Windows</li>
+        <li>MongoDB</li>
+        <li>Spring Boot</li>
+        <li>Agile / Scrum</li>
+        <li>Power BI</li>
+        <li>Microsoft Excel (Advanced)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Engineering Work</p>
+  <h2 class="section-title reveal">Projects</h2>
+  <div class="projects-list">
+
+    <!-- Project 1: C++ -->
+    <div class="project-card reveal">
+      <div class="project-meta">
+        <div class="project-number">01</div>
+        <div class="project-lang">C++ &nbsp;/&nbsp; Data Structures</div>
+        <h3 class="project-name">ABCU Course Advising System</h3>
+        <div class="project-tags">
+          <span class="project-tag">Hash Map</span>
+          <span class="project-tag">Sorting</span>
+          <span class="project-tag">CSV Parsing</span>
+          <span class="project-tag">Input Validation</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-section-title">The Problem</div>
+        <p>Design and implement a course planning tool for an academic advising program. The system needed to load a course catalog from a CSV file, validate prerequisites, sort courses alphanumerically, and allow users to look up any course and its dependencies in real time.</p>
+
+        <div class="project-section-title">Architectural Decision</div>
+        <p>The core design question was data structure selection. After analyzing runtime complexity tradeoffs between vectors, binary search trees, and hash maps, an <code style="font-family:'DM Mono',monospace;font-size:0.85em;background:rgba(15,31,61,0.08);padding:0.1em 0.4em;">unordered_map</code> was chosen for O(1) average-case lookups by course number. Sorting was deferred to a separate pass using <code style="font-family:'DM Mono',monospace;font-size:0.85em;background:rgba(15,31,61,0.08);padding:0.1em 0.4em;">std::sort</code> only when the user requested a full catalog listing, keeping the common lookup path fast.</p>
+
+        <div class="code-snippet"><code><span class="highlight-blue">typedef</span> <span class="highlight">std::unordered_map</span>&lt;std::string, Course&gt; Catalog;
+
+<span class="highlight-green">// O(1) lookup by course number</span>
+<span class="highlight-blue">bool</span> loadCatalogFromCSV(<span class="highlight-blue">const</span> std::string&amp; filename, Catalog&amp; catalog) {
+    <span class="highlight-green">// Validate prerequisites exist before accepting the row</span>
+    <span class="highlight-blue">for</span> (<span class="highlight-blue">const</span> <span class="highlight-blue">auto</span>&amp; prereq : course.prereqs) {
+        <span class="highlight-blue">if</span> (temp.find(prereq) == temp.end())
+            <span class="highlight-blue">return false</span>;
+    }
+}</code></div>
+
+        <div class="project-section-title">Key Engineering Challenges</div>
+        <p>File input validation was a significant challenge. Raw CSV data contained inconsistent whitespace, duplicate course entries, and missing prerequisite references. A strict two-pass validation approach was implemented: first collecting all course numbers, then verifying every prerequisite reference resolved to a known course before committing the catalog to memory. Invalid files were rejected entirely rather than partially loaded, preventing silent data corruption.</p>
+
+        <div class="project-section-title">Outcome</div>
+        <p>The system handled malformed input gracefully, validated all prerequisite chains at load time, and delivered sorted catalog output with full prerequisite detail. The design demonstrated how upfront data structure selection dramatically affects application performance and maintainability.</p>
+      </div>
+    </div>
+
+    <!-- Project 2: Java / Test Automation -->
+    <div class="project-card reveal">
+      <div class="project-meta">
+        <div class="project-number">02</div>
+        <div class="project-lang">Java &nbsp;/&nbsp; JUnit</div>
+        <h3 class="project-name">Contact, Task &amp; Appointment Services</h3>
+        <div class="project-tags">
+          <span class="project-tag">Test-Driven Dev</span>
+          <span class="project-tag">JUnit</span>
+          <span class="project-tag">Requirements Tracing</span>
+          <span class="project-tag">Input Validation</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-section-title">The Problem</div>
+        <p>Build three backend service modules for managing contacts, tasks, and appointments. Each module required strict data validation enforced at the object level, unique ID management, and full CRUD operations. Every requirement had to be verifiable through automated unit tests.</p>
+
+        <div class="project-section-title">Design Philosophy</div>
+        <p>Requirements were treated as executable specifications. Before writing a single line of service logic, each user requirement (unique IDs, character limits, null rejection, immutability constraints) was translated directly into a JUnit test case. This forced clarity on exactly what the code needed to do before it was written, and ensured no requirement could be silently dropped.</p>
+
+        <div class="code-snippet"><code><span class="highlight-green">// Requirements enforced at construction — not as an afterthought</span>
+<span class="highlight-blue">public</span> Contact(String contactId, String firstName, ...) {
+    <span class="highlight-blue">if</span> (contactId == <span class="highlight">null</span> || contactId.length() &gt; <span class="highlight">10</span>)
+        <span class="highlight-blue">throw new</span> IllegalArgumentException(<span class="highlight">"bad id"</span>);
+    <span class="highlight-blue">this</span>.contactId = contactId; <span class="highlight-green">// immutable after construction</span>
+    setFirstName(firstName);   <span class="highlight-green">// validated via setter</span>
+}</code></div>
+
+        <div class="project-section-title">Requirements Traceability</div>
+        <p>Each test method was mapped explicitly to a requirement: unique ID enforcement, null rejection, field length constraints, and immutability of the contact ID post-creation. The test suite served as living documentation, making it immediately clear what the system guaranteed and where it would fail intentionally versus unexpectedly.</p>
+
+        <div class="project-section-title">Outcome</div>
+        <p>Full test coverage across all three service modules, with every requirement traceable to a specific test case. The project demonstrated how test-driven development is not just a quality practice but a requirements management discipline that keeps implementation honest.</p>
+      </div>
+    </div>
+
+    <!-- Project 3: Python / Client-Server -->
+    <div class="project-card reveal">
+      <div class="project-meta">
+        <div class="project-number">03</div>
+        <div class="project-lang">Python &nbsp;/&nbsp; MongoDB &nbsp;/&nbsp; Plotly Dash</div>
+        <h3 class="project-name">Grazioso Salvare Animal Rescue Dashboard</h3>
+        <div class="project-tags">
+          <span class="project-tag">CRUD Module</span>
+          <span class="project-tag">MongoDB</span>
+          <span class="project-tag">Plotly + Dash</span>
+          <span class="project-tag">Leaflet Maps</span>
+          <span class="project-tag">Modular Design</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-section-title">The Problem</div>
+        <p>Build a full-stack interactive dashboard for Grazioso Salvare, an animal rescue organization, to help staff identify dogs suitable for specific rescue training programs. The system connected a live MongoDB database to a multi-component Jupyter Dash dashboard with real-time filtering, a data table, a Plotly pie chart, and a Leaflet map all synchronized via callbacks.</p>
+
+        <div class="project-section-title">Architecture: Two-Layer Design</div>
+        <p>A standalone <code style="font-family:'DM Mono',monospace;font-size:0.85em;background:rgba(15,31,61,0.08);padding:0.1em 0.4em;">AnimalShelter</code> CRUD class encapsulated all MongoDB interactions. The dashboard imported that module and focused entirely on user interaction and visualization. Neither layer knew the internals of the other, so any database change only required updating one class.</p>
+
+        <div class="project-section-title">Architecture: Code</div>
+        <div class="code-snippet"><code><span class="highlight-green"># CRUD module — single source of truth for all DB operations</span>
+<span class="highlight-blue">class</span> <span class="highlight">AnimalShelter</span>:
+    <span class="highlight-blue">def</span> __init__(self, username, password):
+        uri = f<span class="highlight">"mongodb://{username}:{password}@localhost:27017/?authSource=admin"</span>
+        self.collection = MongoClient(uri)[<span class="highlight">"aac"</span>][<span class="highlight">"animals"</span>]
+
+    <span class="highlight-blue">def</span> read(self, query, projection=<span class="highlight">None</span>):
+        <span class="highlight-blue">if</span> query <span class="highlight-blue">is</span> <span class="highlight">None</span>: <span class="highlight-blue">return</span> []
+        <span class="highlight-blue">try</span>:
+            <span class="highlight-blue">return</span> list(self.collection.find(query, projection))
+        <span class="highlight-blue">except</span> PyMongoError:
+            <span class="highlight-blue">return</span> []  <span class="highlight-green"># fail gracefully, never crash the dashboard</span>
+
+<span class="highlight-green"># Dashboard callback — knows nothing about MongoDB internals</span>
+<span class="highlight-blue">@app</span>.callback(Output(<span class="highlight">'datatable-id'</span>, <span class="highlight">'data'</span>),
+              Input(<span class="highlight">'filter-type'</span>, <span class="highlight">'value'</span>))
+<span class="highlight-blue">def</span> update_table(filter_type):
+    <span class="highlight-blue">if</span> filter_type == <span class="highlight">'Water'</span>:
+        query = {<span class="highlight">"breed"</span>: {<span class="highlight">"$in"</span>: [<span class="highlight">"Labrador Retriever Mix"</span>,
+                   <span class="highlight">"Chesapeake Bay Retriever"</span>, <span class="highlight">"Newfoundland"</span>]},
+                 <span class="highlight">"age_upon_outcome_in_weeks"</span>: {<span class="highlight">"$gte"</span>: <span class="highlight-blue">26</span>, <span class="highlight">"$lte"</span>: <span class="highlight-blue">156</span>}}
+    df = pd.DataFrame(db.read(query, {<span class="highlight">"_id"</span>: <span class="highlight-blue">0</span>}))
+    <span class="highlight-blue">return</span> df.to_dict(<span class="highlight">'records'</span>)</code></div>
+
+        <div class="project-section-title">Live Demo</div>
+        <p style="margin-bottom:1rem;">Interactive replica of the original dashboard. Select a rescue type to filter the table, chart, and map simultaneously.</p>
+
+        <div id="dashboard" style="background:#0f1f3d;border-radius:4px;padding:1.5rem;">
+
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,168,76,0.2);">
+            <div style="width:38px;height:38px;background:#c9a84c;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">&#x1F43E;</div>
+            <div>
+              <div style="color:#f5f0e8;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;">Grazioso Salvare</div>
+              <div style="color:rgba(245,240,232,0.4);font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;">Animal Rescue Identification Dashboard</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.25rem;">
+            <div style="color:rgba(245,240,232,0.45);font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;">Rescue Type Filter</div>
+            <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+              <button onclick="dsFilter('all')" id="ds-all" style="font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid #c9a84c;background:#c9a84c;color:#0f1f3d;cursor:pointer;font-weight:600;letter-spacing:0.05em;transition:all 0.2s;">All</button>
+              <button onclick="dsFilter('water')" id="ds-water" style="font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid rgba(201,168,76,0.3);background:transparent;color:rgba(245,240,232,0.7);cursor:pointer;letter-spacing:0.05em;transition:all 0.2s;">Water Rescue</button>
+              <button onclick="dsFilter('mountain')" id="ds-mountain" style="font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid rgba(201,168,76,0.3);background:transparent;color:rgba(245,240,232,0.7);cursor:pointer;letter-spacing:0.05em;transition:all 0.2s;">Mountain / Wilderness</button>
+              <button onclick="dsFilter('disaster')" id="ds-disaster" style="font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid rgba(201,168,76,0.3);background:transparent;color:rgba(245,240,232,0.7);cursor:pointer;letter-spacing:0.05em;transition:all 0.2s;">Disaster / Tracking</button>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.25rem;overflow-x:auto;">
+            <div style="color:rgba(245,240,232,0.45);font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">MongoDB Records &nbsp;<span id="ds-count" style="color:#c9a84c;"></span></div>
+            <table style="width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:0.7rem;">
+              <thead>
+                <tr style="border-bottom:1px solid rgba(201,168,76,0.25);">
+                  <th style="text-align:left;padding:0.45rem 0.75rem;color:#c9a84c;font-weight:500;">Name</th>
+                  <th style="text-align:left;padding:0.45rem 0.75rem;color:#c9a84c;font-weight:500;">Breed</th>
+                  <th style="text-align:left;padding:0.45rem 0.75rem;color:#c9a84c;font-weight:500;">Age (wks)</th>
+                  <th style="text-align:left;padding:0.45rem 0.75rem;color:#c9a84c;font-weight:500;">Sex</th>
+                  <th style="text-align:left;padding:0.45rem 0.75rem;color:#c9a84c;font-weight:500;">Type</th>
+                </tr>
+              </thead>
+              <tbody id="ds-tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="ds-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+            <div>
+              <div style="color:rgba(245,240,232,0.45);font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Breed Distribution</div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);padding:0.75rem;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+                <canvas id="ds-pie" width="240" height="180"></canvas>
+              </div>
+            </div>
+            <div>
+              <div style="color:rgba(245,240,232,0.45);font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Selected Animal Location</div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);border-radius:2px;height:196px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+                <canvas id="ds-map-canvas" width="400" height="196" style="width:100%;height:100%;display:block;"></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="project-section-title" style="margin-top:1.75rem;">Outcome</div>
+        <p>A production-ready multi-component dashboard backed by a live MongoDB instance, demonstrating full-stack integration across Python, MongoDB, Plotly Dash, and Leaflet. The modular CRUD layer kept the system maintainable and reusable across any application needing the same data.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORK EXPERIENCE -->
+<section id="work">
+  <p class="section-label reveal">Professional History</p>
+  <h2 class="section-title reveal">Work Experience</h2>
+  <div class="work-list">
+    <div class="work-item reveal">
+      <div class="work-dates">Aug 2023<br/>Sept 2024</div>
+      <div>
+        <div class="work-role">Legal Assistant</div>
+        <div class="work-company">Vinci Law Office &nbsp;/&nbsp; Denver, CO</div>
+        <ul class="work-bullets">
+          <li>Managed and maintained documentation across multiple concurrent legal matters, ensuring accuracy, compliance, and continuity under strict deadlines.</li>
+          <li>Coordinated deliverables and tracked task status across competing workstreams, proactively escalating risks and keeping multiple attorneys informed.</li>
+          <li>Organized discovery materials and enforced documentation standards, developing a discipline for precision in environments where errors carry real consequences.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="work-item reveal">
+      <div class="work-dates">Mar 2021<br/>Dec 2022</div>
+      <div>
+        <div class="work-role">Escrow Assistant</div>
+        <div class="work-company">First Hawaii Title &nbsp;/&nbsp; Maui, HI</div>
+        <ul class="work-bullets">
+          <li>Resolved title and financial discrepancies across active real estate transactions through cross-functional coordination with clients, lenders, and internal teams.</li>
+          <li>Maintained detailed documentation across simultaneous transactions to ensure accuracy, continuity, and timely turnaround under strict regulatory deadlines.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <p class="section-label reveal">Credentials</p>
+  <h2 class="section-title reveal">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card reveal">
+      <div class="cert-issuer">PerScholas</div>
+      <div class="cert-name">Data Analytics</div>
+      <div class="cert-year">385-hour intensive &nbsp;/&nbsp; 2025</div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-issuer">Codecademy</div>
+      <div class="cert-name">Data Engineering &amp; Machine Learning</div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-issuer">Codecademy</div>
+      <div class="cert-name">Data &amp; Programming Foundations of AI</div>
+      <div class="cert-year">2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">America Sanchez-Garcia</div>
+  <div class="footer-contact"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="accdc1c9dec5cfcddfcbcddecfc5cd9d9ceccbc1cdc5c082cfc3c1">[email&#160;protected]</a> &nbsp;/&nbsp; (808) 298-7829 &nbsp;/&nbsp; Austin, TX</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<script>
+const DS_DATA = {
+  all: [
+    {name:"Buddy",    breed:"Labrador Retriever Mix",    age:52,  sex:"Intact Male",   type:"Water",    lat:30.27,  lng:-97.74},
+    {name:"Luna",     breed:"Chesapeake Bay Retriever",  age:78,  sex:"Intact Female", type:"Water",    lat:30.31,  lng:-97.70},
+    {name:"Scout",    breed:"Newfoundland",              age:104, sex:"Intact Male",   type:"Water",    lat:30.25,  lng:-97.78},
+    {name:"Rex",      breed:"German Shepherd",           age:65,  sex:"Intact Male",   type:"Mountain", lat:30.29,  lng:-97.65},
+    {name:"Nala",     breed:"Siberian Husky",            age:88,  sex:"Intact Female", type:"Mountain", lat:30.22,  lng:-97.72},
+    {name:"Bear",     breed:"Alaskan Malamute",          age:72,  sex:"Intact Male",   type:"Mountain", lat:30.35,  lng:-97.68},
+    {name:"Sadie",    breed:"Golden Retriever",          age:45,  sex:"Intact Female", type:"Disaster", lat:30.28,  lng:-97.80},
+    {name:"Max",      breed:"Bloodhound",                age:110, sex:"Intact Male",   type:"Disaster", lat:30.20,  lng:-97.75},
+    {name:"Koda",     breed:"German Shepherd",           age:90,  sex:"Intact Male",   type:"Disaster", lat:30.33,  lng:-97.62},
+    {name:"Bella",    breed:"Labrador Retriever Mix",    age:60,  sex:"Intact Female", type:"Water",    lat:30.26,  lng:-97.77},
+    {name:"Zeus",     breed:"Rottweiler",                age:130, sex:"Intact Male",   type:"Disaster", lat:30.30,  lng:-97.71},
+    {name:"Loki",     breed:"Old English Sheepdog",      age:95,  sex:"Intact Male",   type:"Mountain", lat:30.24,  lng:-97.69},
+  ],
+  water:    ["Labrador Retriever Mix","Chesapeake Bay Retriever","Newfoundland"],
+  mountain: ["German Shepherd","Siberian Husky","Alaskan Malamute","Old English Sheepdog","Rottweiler"],
+  disaster: ["Golden Retriever","Bloodhound","German Shepherd","Rottweiler","Doberman Pinscher"]
+};
+
+const PIE_COLORS = ["#c9a84c","#2a5298","#86efac","#93c5fd","#f9a8d4","#fcd34d","#6ee7b7"];
+
+
+function dsFilter(type) {
+  // Update button styles
+  ["all","water","mountain","disaster"].forEach(t => {
+    const btn = document.getElementById("ds-"+t);
+    if (t === type) {
+      btn.style.background = "#c9a84c"; btn.style.color = "#0f1f3d"; btn.style.borderColor = "#c9a84c"; btn.style.fontWeight = "600";
+    } else {
+      btn.style.background = "transparent"; btn.style.color = "rgba(245,240,232,0.7)"; btn.style.borderColor = "rgba(201,168,76,0.3)"; btn.style.fontWeight = "400";
+    }
+  });
+
+  let rows = DS_DATA.all;
+  if (type !== "all") {
+    const allowed = DS_DATA[type];
+    rows = DS_DATA.all.filter(r => allowed.includes(r.breed));
+  }
+
+  // Update table
+  const tbody = document.getElementById("ds-tbody");
+  tbody.innerHTML = "";
+  rows.forEach((r, i) => {
+    const tr = document.createElement("tr");
+    tr.style.cssText = "border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:background 0.15s;";
+    tr.innerHTML = `<td style="padding:0.4rem 0.75rem;color:#f5f0e8;">${r.name}</td><td style="padding:0.4rem 0.75rem;color:rgba(245,240,232,0.7);">${r.breed}</td><td style="padding:0.4rem 0.75rem;color:rgba(245,240,232,0.7);">${r.age}</td><td style="padding:0.4rem 0.75rem;color:rgba(245,240,232,0.7);">${r.sex}</td><td style="padding:0.4rem 0.75rem;color:#c9a84c;">${r.type}</td>`;
+    tr.addEventListener("mouseenter", () => tr.style.background = "rgba(201,168,76,0.08)");
+    tr.addEventListener("mouseleave", () => tr.style.background = "transparent");
+    tr.addEventListener("click", () => updateMap(r));
+    tbody.appendChild(tr);
+  });
+  document.getElementById("ds-count").textContent = "(" + rows.length + " records)";
+
+  // Update pie chart
+  const breedCounts = {};
+  rows.forEach(r => breedCounts[r.breed] = (breedCounts[r.breed] || 0) + 1);
+  drawPie(breedCounts);
+
+  // Update map to first record
+  if (rows.length > 0) updateMap(rows[0]);
+}
+
+function drawPie(data) {
+  const canvas = document.getElementById("ds-pie");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const entries = Object.entries(data);
+  const total = entries.reduce((s, [,v]) => s + v, 0);
+  const cx = canvas.width / 2, cy = canvas.height / 2 - 10, r = 65;
+  let angle = -Math.PI / 2;
+  entries.forEach(([label, val], i) => {
+    const slice = (val / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, angle, angle + slice);
+    ctx.closePath();
+    ctx.fillStyle = PIE_COLORS[i % PIE_COLORS.length];
+    ctx.fill();
+    ctx.strokeStyle = "#0f1f3d"; ctx.lineWidth = 2; ctx.stroke();
+    angle += slice;
+  });
+  // Legend
+  let ly = cy + r + 18;
+  ctx.font = "10px DM Mono, monospace";
+  let lx = 8;
+  entries.forEach(([label, val], i) => {
+    if (i > 0 && i % 2 === 0) { ly += 16; lx = 8; }
+    ctx.fillStyle = PIE_COLORS[i % PIE_COLORS.length];
+    ctx.fillRect(lx, ly - 8, 10, 10);
+    ctx.fillStyle = "rgba(245,240,232,0.6)";
+    const short = label.length > 18 ? label.slice(0,16) + ".." : label;
+    ctx.fillText(short + " (" + val + ")", lx + 14, ly);
+    lx += canvas.width / 2 - 4;
+  });
+}
+
+function updateMap(record) {
+  const canvas = document.getElementById("ds-map-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Dark background
+  ctx.fillStyle = "#1a2744";
+  ctx.fillRect(0, 0, w, h);
+
+  // Grid lines simulating map tiles
+  ctx.strokeStyle = "rgba(255,255,255,0.06)";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
+  for (let y = 0; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
+
+  // Simulate roads
+  ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, h*0.4); ctx.lineTo(w, h*0.55); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w*0.3, 0); ctx.lineTo(w*0.45, h); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, h*0.7); ctx.lineTo(w, h*0.65); ctx.stroke();
+  ctx.strokeStyle = "rgba(255,255,255,0.07)"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(w*0.6, 0); ctx.lineTo(w*0.55, h); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, h*0.25); ctx.lineTo(w, h*0.3); ctx.stroke();
+
+  // Marker pin
+  const px = w / 2, py = h / 2;
+  ctx.shadowColor = "rgba(201,168,76,0.9)"; ctx.shadowBlur = 18;
+  ctx.beginPath(); ctx.arc(px, py, 9, 0, Math.PI*2);
+  ctx.fillStyle = "#c9a84c"; ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.beginPath(); ctx.arc(px, py, 9, 0, Math.PI*2);
+  ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2; ctx.stroke();
+
+  // Popup label
+  const label = record.name + " — " + record.breed;
+  ctx.font = "bold 11px \'Courier New\', monospace";
+  const tw = ctx.measureText(label).width;
+  const bx = Math.min(px - tw/2 - 8, w - tw - 20), by = py - 42;
+  ctx.fillStyle = "rgba(15,31,61,0.92)";
+  ctx.fillRect(bx, by, tw + 16, 26);
+  ctx.strokeStyle = "#c9a84c"; ctx.lineWidth = 1;
+  ctx.strokeRect(bx, by, tw + 16, 26);
+  ctx.fillStyle = "#f5f0e8";
+  ctx.fillText(label, bx + 8, by + 17);
+
+  // Coords
+  ctx.font = "10px \'Courier New\', monospace";
+  ctx.fillStyle = "rgba(201,168,76,0.6)";
+  ctx.fillText("Lat: " + record.lat.toFixed(4) + "  Lng: " + record.lng.toFixed(4), 10, h - 10);
+}
+
+// Initialize on load
+window.addEventListener("load", () => {
+  dsFilter("all");
+  setTimeout(() => { if (dsMap) dsMap.invalidateSize(); }, 300);
+});
+</script>
+<script>
+function toggleMenu() {
+  const links = document.getElementById('navLinks');
+  const btn = document.getElementById('navHamburger');
+  links.classL
